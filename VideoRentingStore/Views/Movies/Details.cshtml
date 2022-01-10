@@ -1,0 +1,17 @@
+﻿@model VideoRentingStore.Models.Movie
+
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1 class="mt-5">@Model.Name</h1>
+
+
+<ul>
+    <li>Genre: @Model.Genre.Name</li>
+    <li>Release Date: @Model.ReleaseDate.ToString().Split(' ')[0]</li>
+    <li>Date Added: @Model.DateAdded.ToString().Split(' ')[0]</li>
+    <li>Number in Stock: @Model.Stock</li>
+</ul>

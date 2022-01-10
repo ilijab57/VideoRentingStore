@@ -1,0 +1,67 @@
+﻿@model IEnumerable<VideoRentingStore.Models.Movie>
+
+@{
+    ViewBag.Title = "Movies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12" id="movies_list">
+        <h1>Movies</h1>
+
+        @*<a href="" class="btn btn-primary" role="button">Add Movie</a>*@
+        @Html.ActionLink("Add Movie", "Create", "Movies", new { @class="btn btn-primary", @role="button"})
+
+        @if (Model.Any())
+        {
+            <table class="table table-hover" id="movies">
+                <thead>
+                    <tr>
+                        <th scope="col">Movie</th>
+                        <th scope="col">Genre</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h1>We don't have any movies yet.'</h1>
+        }
+    </div>
+</div>
+
+@section scripts
+    {
+    <script>
+        $(document).ready(function () {
+            $("#movies").DataTable({
+                ajax: {
+                    url: "/api/movies",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "Name",
+                        render: function (data, type, movie) {
+                            return `<a href="/movies/edit/${movie.Id}">${movie.Name}</a>`
+                        }
+                    },
+                    {
+                        data: "ReleaseDate"
+                    },
+                    {
+                        data: "Id",
+                        render: function (data) {
+                            return `<button class="btn-link js-delete" data-movies-id="${data}">Delete</button>`
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+    }

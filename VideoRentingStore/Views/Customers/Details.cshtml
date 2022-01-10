@@ -1,0 +1,21 @@
+﻿@model VideoRentingStore.Models.Customer
+
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>@Model.Name</h1>
+
+<ul>
+    <li>@Model.MembershipType.Name</li>
+    @if (@Model.Birthday.HasValue)
+    {
+        <li>
+
+            @Model.Birthday.GetValueOrDefault().Date.ToString("d")
+           
+        </li>
+    }
+    </ul>
