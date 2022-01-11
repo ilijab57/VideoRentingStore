@@ -9,24 +9,23 @@ namespace VideoRentingStore.Dtos
 {
     public class MovieDto
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
+        [StringLength(255)]
         public string Name { get; set; }
 
         [Required]
-        [Column(TypeName = "datetime2")]
+        public byte GenreId { get; set; }
+
+        public GenreDto Genre { get; set; }
+
+        public DateTime DateAdded { get; set; }
+
         public DateTime ReleaseDate { get; set; }
 
-        public DateTime? DateAdded { get; set; }
-
-        [Required]
         [Range(1, 20)]
-        public int Stock { get; set; }
-
-        [Required]
-        [ForeignKey("Genre")]
-        public byte GenreId { get; set; }
+        public byte NumberInStock { get; set; }
 
     }
 }

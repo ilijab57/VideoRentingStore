@@ -27,7 +27,7 @@ namespace VideoRentingStore.Models
         public int Stock { get; set; }
 
         [Required]
-        [ForeignKey("Genre")]
+        [Display(Name = "Genre")]
         public byte GenreId { get; set; }
 
         public Genre Genre { get; set; }

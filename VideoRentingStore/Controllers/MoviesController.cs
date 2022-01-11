@@ -9,7 +9,7 @@ using VideoRentingStore.ViewModels;
 
 
 namespace VideoRentingStore.Controllers
-{   [AllowAnonymous]
+{  
     public class MoviesController : Controller
     {
         private  ApplicationDbContext _context;
@@ -28,8 +28,10 @@ namespace VideoRentingStore.Controllers
         public ActionResult Index()
         {
             var movies = _context.Movies.Include(m => m.Genre).ToList();
+            if(User.IsInRole(RoleName.CanManageMovies))
+                return View(movies);
 
-            return View(movies);
+            return View("ReadOnlyList", movies);
         }
 
 
@@ -42,13 +44,14 @@ namespace VideoRentingStore.Controllers
             return View(movie);
         }
 
-
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Create()
         {
             var viewModel = new MovieFormViewModel { Genres = _context.Genres.ToList() };
             return View("MoviesForm", viewModel);
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
@@ -78,6 +81,7 @@ namespace VideoRentingStore.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.FirstOrDefault(m => m.Id == id);

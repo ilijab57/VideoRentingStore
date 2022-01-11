@@ -11,6 +11,7 @@ using System.Data.Entity;
 
 namespace VideoRentingStore.Controllers.Api
 {
+    [Authorize(Roles = RoleName.CanManageMovies)]
     public class MoviesController : ApiController
     {
         private ApplicationDbContext _context;
@@ -24,8 +25,7 @@ namespace VideoRentingStore.Controllers.Api
         {
             var movies = _context.Movies
                 .Include(m => m.Genre)
-                .ToList()
-                .Select(Mapper.Map<Movie, MovieDto>);
+                .ToList();
 
             return Ok(movies);
         }
