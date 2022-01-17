@@ -24,7 +24,9 @@ namespace VideoRentingStore.Models
         [Required]
         [Display(Name = "Items in Stock")]
         [Range(1,20)]
-        public int Stock { get; set; }
+        public byte Stock { get; set; }
+
+        public byte AvailableCount { get; set; }
 
         [Required]
         [Display(Name = "Genre")]

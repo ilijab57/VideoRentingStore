@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using VideoRentingStore.Models;
 using VideoRentingStore.ViewModels;
+using System.Runtime.Caching;
 
 namespace VideoRentingStore.Controllers
 {
@@ -68,7 +69,7 @@ namespace VideoRentingStore.Controllers
             }
 
 
-            if(customer.Id ==0)
+            if(customer.Id == 0)
                 _context.Customers.Add(customer);
             else
             {

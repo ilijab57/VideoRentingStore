@@ -26,6 +26,8 @@ namespace VideoRentingStore.Dtos
 
         [Range(1, 20)]
         public byte NumberInStock { get; set; }
+        public byte AvailableCount { get; set; }
+
 
     }
 }

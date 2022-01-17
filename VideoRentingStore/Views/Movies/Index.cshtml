@@ -9,7 +9,7 @@
     <div class="col-12" id="movies_list">
         <h1>Movies</h1>
 
-        @Html.ActionLink("Add Movie", "Create", "Movies", new { @class="btn btn-primary", @role="button"})
+        @Html.ActionLink("Add Movie", "Create", "Movies", new { @class="btn btn-primary mb-5", @role="button"})
 
         @if (Model.Any())
         {
@@ -56,7 +56,7 @@
                     {
                         data: "Id",
                         render: function (data) {
-                            return `<button class="btn-link js-delete" data-movie-id="${data}">Delete</button>`
+                            return `<button class="js-delete btn btn-danger" data-movie-id="${data}">Delete</button>`
                         }
                     }
                 ]

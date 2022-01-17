@@ -65,6 +65,7 @@ namespace VideoRentingStore.Controllers
             if (movie.Id == 0)
             {
                 movie.DateAdded = DateTime.Now;
+                movie.AvailableCount = movie.Stock;
                 _context.Movies.Add(movie);
             }
             else

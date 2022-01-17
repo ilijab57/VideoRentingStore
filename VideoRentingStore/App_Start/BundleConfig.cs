@@ -13,7 +13,9 @@ namespace VideoRentingStore
                             "~/Scripts/bootstrap.js",
                             "~/Scripts/datatables/jquery.datatables.js",
                             "~/Scripts/datatables/datatables.bootstrap.js",
-                            "~/Scripts/bootbox.js"
+                            "~/Scripts/bootbox.js",
+                            "~/Scripts/toastr.js",
+                            "~/Scripts/typeahead.bundle.js"
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -26,7 +28,10 @@ namespace VideoRentingStore
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-lumen.css",
+                      "~/Content/bootstrap-theme.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
+                      "~/Content/typeahead.css",
+                      "~/Content/toastr.css",
                       "~/Content/site.css"));
         }
     }

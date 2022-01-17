@@ -21,11 +21,16 @@ namespace VideoRentingStore.Controllers.Api
             _context = new ApplicationDbContext();
         }
 
-        public IHttpActionResult GetMovies()
+        public IHttpActionResult GetMovies(string query = null)
         {
-            var movies = _context.Movies
+            var moviesQuery = _context.Movies
                 .Include(m => m.Genre)
-                .ToList();
+                .Where(m => m.AvailableCount > 0);
+
+            if (!String.IsNullOrEmpty(query))
+                moviesQuery = moviesQuery.Where(m => m.Name.Contains(query));
+
+            var movies = moviesQuery.ToList();
 
             return Ok(movies);
         }
@@ -47,6 +52,7 @@ namespace VideoRentingStore.Controllers.Api
                 return BadRequest();
 
             movieDto.DateAdded = DateTime.Now;
+            movieDto.AvailableCount = movieDto.NumberInStock;
             var movie = Mapper.Map<MovieDto, Movie>(movieDto);
             _context.Movies.Add(movie);
             _context.SaveChanges();
